@@ -1,0 +1,130 @@
+# Plugins {{{ #
+
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+# completions
+zplug "zsh-users/zsh-completions"
+zplug "felixr/docker-zsh-completion"
+zplug "plugins/docker-compose", from:oh-my-zsh
+
+zplug "zsh-users/zsh-history-substring-search", defer:3
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-autosuggestions"
+
+zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
+
+
+zplug "$ZDOTDIR", use:clipboard.zsh, from:local
+zplug "$ZDOTDIR", use:prompt.zsh, from:local
+
+zplug load
+
+# }}} Plugins #
+
+# Key bindings {{{ #
+
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down
+
+bindkey '^U' backward-kill-line
+bindkey '^T' kill-line
+
+bindkey '^F' vi-forward-char
+bindkey '^B' vi-backward-char
+
+bindkey '^A' beginning-of-line
+bindkey '^E' end-of-line
+
+bindkey '^D' delete-char-or-list
+
+# }}} Key bindings #
+
+# Dircolors {{{ #
+
+if (( $+commands[gdircolors] )); then
+  dircolors_cmd='gdircolors'
+elif (( $+commands[dircolors] )); then
+  dircolors_cmd='dircolors'
+fi
+
+if [[ ! -z $dircolors_cmd ]]; then
+  eval "$($dircolors_cmd --sh "$XDG_CONFIG_HOME/dircolors/dircolors")"
+fi
+
+if (( $+commands[gls] )); then
+  ls_cmd='gls'
+else
+  ls_cmd='ls'
+fi
+alias ls="$ls_cmd --color=auto --group-directories-first"
+
+# }}} Dircolors #
+
+# Aliases {{{ #
+
+alias ll='ls -lh' # Lists human readable sizes
+alias lr='ll -R'  # Lists human readable sizes, recursively
+alias la='ll -A'  # Lists human readable sizes, hidden files
+alias cd='cd -P'  # Change $PWD when cd to symlink
+alias p='python3'
+alias pp='ptpython'
+alias v='nvim'
+
+
+# sed
+if (( $+commands[gsed] )); then
+    alias sed=gsed
+fi
+
+# urlencode
+alias urlencode="python -c 'import sys, urllib as ul; [sys.stdout.write(ul.quote_plus(l)) for l in sys.stdin]'"
+
+# }}} Aliases #
+
+# Completions {{{ #
+
+# Case insensetive completion
+zstyle ':completion:*' matcher-list \
+  'm:{[:lower:]}={[:upper:]}'\
+  'm:{[:upper:]}={[:lower:]}'
+
+# Use cache
+zstyle ':completion::complete:*' use-cache on
+
+# Use menu if more than one result
+zstyle ':completion:*:*:*:*:*' menu select
+
+# Format of group name
+zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+
+# Colors in completion menu
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# }}} Completions #
+
+# History {{{ #
+
+# Variables
+HISTSIZE=100000
+SAVEHIST=100000
+
+# Options
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_VERIFY
+
+# }}} History #
+
+# Tools completions {{{ #
+
+# gcloud
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+
+# }}} Tools completions #
+
+# vim: fdm=marker
