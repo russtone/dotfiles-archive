@@ -5,18 +5,16 @@ source $ZPLUG_HOME/init.zsh
 
 # completions
 zplug "zsh-users/zsh-completions"
-zplug "felixr/docker-zsh-completion"
+
 zplug "plugins/docker-compose", from:oh-my-zsh
+zplug "plugins/docker", from:oh-my-zsh
 
 zplug "zsh-users/zsh-history-substring-search", defer:3
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-autosuggestions"
 
 zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
-
-
-zplug "$ZDOTDIR", use:clipboard.zsh, from:local
-zplug "$ZDOTDIR", use:prompt.zsh, from:local
+zplug "russtone/prompt-russtone", as:theme, use:theme.zsh
 
 zplug load
 
@@ -49,7 +47,7 @@ elif (( $+commands[dircolors] )); then
 fi
 
 if [[ ! -z $dircolors_cmd ]]; then
-  eval "$($dircolors_cmd --sh "$XDG_CONFIG_HOME/dircolors/dircolors")"
+  eval "$($dircolors_cmd --sh "$HOME/.dircolors")"
 fi
 
 if (( $+commands[gls] )); then
@@ -127,4 +125,4 @@ source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 
 # }}} Tools completions #
 
-# vim: fdm=marker
+# vim: fdm=marker ft=zsh

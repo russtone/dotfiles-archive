@@ -1,5 +1,3 @@
-# Environment {{{ #
-
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -10,14 +8,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 export LANG='en_US.UTF-8'
 export LC_ALL=$LANG
 export PAGER='less'
-
-if (( $+commands[nvim] )); then
-    export EDITOR='nvim'
-    export VISUAL='nvim'
-else
-    export EDITOR='vim'
-    export VISUAL='vim'
-fi
 
 # Private
 source $ZDOTDIR/private.zsh
@@ -35,4 +25,12 @@ path=(
     $path
 )
 
-# }}} Environment #
+if (( $+commands[nvim] )); then
+    export EDITOR='nvim'
+    export VISUAL='nvim'
+else
+    export EDITOR='vim'
+    export VISUAL='vim'
+fi
+
+# vim: ft=zsh
