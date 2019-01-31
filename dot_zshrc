@@ -61,13 +61,13 @@ alias ls="$ls_cmd --color=auto --group-directories-first"
 
 # Aliases {{{ #
 
-alias ll='ls -lh' # Lists human readable sizes
-alias lr='ll -R'  # Lists human readable sizes, recursively
 alias la='ll -A'  # Lists human readable sizes, hidden files
-alias cd='cd -P'  # Change $PWD when cd to symlink
 alias p='python3'
 alias pp='ptpython'
 alias v='nvim'
+alias ce='chezmoi edit'
+alias ca='chezmoi apply'
+alias hex='open -a Synalyze\ It\!\ Pro'
 
 
 # sed
