@@ -17,6 +17,7 @@ Plug 'tpope/vim-projectionist'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rsi'
 Plug 'easymotion/vim-easymotion'
+Plug 'mcchrish/nnn.vim'
 
 " Search & replace
 Plug 'haya14busa/incsearch.vim'
@@ -902,62 +903,14 @@ nnoremap <silent> gr :OverCommandLine<CR>s/
 
 " }}} Plugin: Over "
 
-" Plugin: Ranger {{{ "
+" Plugin: NNN {{{ "
 
-let g:ranger_path = 'ranger'
+" Disable default mappings
+let g:nnn#set_default_mappings = 0
 
-function! OpenRanger(path)
-    let l:path = expand(a:path)
-    let l:tmpfile = tempname()
-    let l:curfile = expand('%:p')
-    let l:callback = {
-    \ 'name': 'ranger',
-    \ 'tmpfile': l:tmpfile,
-    \ 'curfile': l:curfile,
-    \ 'curfile_existed': filereadable(l:curfile),
-    \ 'curbufnr': bufnr('%'),
-    \ }
+nnoremap <silent> <leader>d :NnnPicker '%:p:h'<CR>
 
-    function! l:callback.on_exit(id, code, event)
-        bdelete!
-
-        if l:self.curfile_existed &&
-        \ !filereadable(l:self.curfile)
-            exec 'bdelete ' . l:self.curbufnr
-        endif
-
-        set hidden
-
-        " Open selected files
-        if filereadable(l:self.tmpfile)
-            for l:fpath in readfile(l:self.tmpfile)
-                exec 'edit '. l:fpath
-            endfor
-            call delete(l:self.tmpfile)
-        endif
-    endfunction
-
-    write
-    set nohidden
-    enew
-
-    let l:command = g:ranger_path .
-    \ ' --choosefiles=' . shellescape(l:tmpfile) .
-    \ (isdirectory(l:path) ? shellescape(l:path) : ' --selectfile=' . shellescape(l:path))
-
-    call termopen(l:command, l:callback)
-    startinsert
-endfunction
-
-" Start ranger in current buffer directory (d - directory)
-nnoremap <Leader>d :call OpenRanger('%:p')<CR>
-
-augroup augroup_terminal
-    autocmd!
-    autocmd TermOpen * setlocal nolist
-augroup END
-
-" }}} Plugin: Ranger "
+" }}} Plugin: NNN "
 
 " Plugin: Sideways {{{ "
 
