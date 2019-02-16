@@ -10,7 +10,7 @@ export LC_ALL=$LANG
 export PAGER='less'
 
 # Private
-# source $ZDOTDIR/private.zsh
+source $HOME/.private
 
 # Path
 typeset -U path
