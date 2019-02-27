@@ -120,6 +120,25 @@ setopt INC_APPEND_HISTORY
 
 # }}} History #
 
+# FZF {{{
+
+if (( $+commands[fzf] )); then
+
+  # Color scheme
+  export FZF_DEFAULT_OPTS='
+   --color fg:15,bg:0,hl:3,fg+:3,bg+:0,hl+:3
+   --color info:7,prompt:2,spinner:3,pointer:4,marker:3
+  '
+
+  # Use ag if possible
+  if (( $+commands[ag] )); then
+    export FZF_DEFAULT_COMMAND='ag -g ""'
+  fi
+
+fi
+
+# }}}
+
 # Tools completions {{{ #
 
 # gcloud
