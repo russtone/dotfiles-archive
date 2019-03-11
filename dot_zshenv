@@ -19,6 +19,7 @@ path=(
     $HOME/Library/Android/sdk/platform-tools
     $HOME/Library/Android/sdk/tools
     $HOME/.local/{bin,sbin}
+    /usr/local/opt/openssl/bin
     /usr/local/opt/curl/bin
     /usr/local/opt/gettext/bin
     /usr/local/{bin,sbin}
