@@ -628,6 +628,36 @@ endfunction
 
 " 1}}} Statusline "
 
+" Indent {{{ "
+
+augroup augroup_ident
+    autocmd!
+    autocmd Filetype go setlocal ts=2 sts=2 sw=2 noexpandtab
+    autocmd Filetype css setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd Filetype stylus setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd Filetype scss setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd Filetype pug setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd Filetype javascript.jsx setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd Filetype sh setlocal ts=2 sts=2 sw=2 expandtab
+augroup END
+
+" }}} Indent "
+
+" Filetypes {{{ "
+
+augroup augroup_filetype
+    autocmd!
+    autocmd BufNewFile,BufRead *.heml set filetype=html
+    autocmd BufNewFile,BufRead *.ksy set filetype=yaml
+    autocmd BufNewFile,BufRead .babelrc,.postcssrc,.lessrc,.eslintrc set filetype=yaml
+    autocmd BufNewFile,BufRead *.m set filetype=objc
+    autocmd BufNewFile,BufRead *.conf set syntax=nginx
+    autocmd BufNewFile,BufRead *.sage set syntax=python
+    autocmd BufNewFile,BufRead *.css set syntax=less
+augroup END
+
+" }}} Filetypes "
+
 " Plugin: UltiSnips {{{ "
 
 let g:UltiSnipsSnippetDirectories = [$XDG_CONFIG_HOME . '/nvim/UltiSnips']
@@ -915,36 +945,6 @@ let g:user_emmet_leader_key=','
 
 " }}} Plugin: Emmet "
 
-" Indent {{{ "
-
-augroup augroup_ident
-    autocmd!
-    autocmd Filetype go setlocal ts=2 sts=2 sw=2 noexpandtab
-    autocmd Filetype css setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd Filetype stylus setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd Filetype scss setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd Filetype pug setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd Filetype javascript.jsx setlocal ts=2 sts=2 sw=2 expandtab
-    autocmd Filetype sh setlocal ts=2 sts=2 sw=2 expandtab
-augroup END
-
-" }}} Indent "
-
-" Filetypes {{{ "
-
-augroup augroup_filetype
-    autocmd!
-    autocmd BufNewFile,BufRead *.heml set filetype=html
-    autocmd BufNewFile,BufRead *.ksy set filetype=yaml
-    autocmd BufNewFile,BufRead .babelrc,.postcssrc,.lessrc,.eslintrc set filetype=yaml
-    autocmd BufNewFile,BufRead *.m set filetype=objc
-    autocmd BufNewFile,BufRead *.conf set syntax=nginx
-    autocmd BufNewFile,BufRead *.sage set syntax=python
-    autocmd BufNewFile,BufRead *.css set syntax=less
-augroup END
-
-" }}} Filetypes "
-
 " Ranger {{{ "
 
 let g:ranger_path = 'ranger'
@@ -1007,6 +1007,7 @@ augroup END
 " vim-go
 let g:go_term_enabled = 1
 let g:go_term_mode = 'split'
+let g:go_fmt_command = 'goimports'
 
 augroup augroup_golang
     autocmd!
