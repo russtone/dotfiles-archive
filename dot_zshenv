@@ -16,12 +16,9 @@ source $HOME/.private
 typeset -U path
 path=(
     ${${(s<:>)GOPATH}/%//bin}
-    $HOME/Library/Android/sdk/platform-tools
-    $HOME/Library/Android/sdk/tools
+    $HOME/Library/Android/sdk/{platform-tools,tools}
     $HOME/.local/{bin,sbin}
-    /usr/local/opt/openssl/bin
-    /usr/local/opt/curl/bin
-    /usr/local/opt/gettext/bin
+    /usr/local/opt/{curl,openssl,gettext}/bin
     /usr/local/{bin,sbin}
     $path
 )
