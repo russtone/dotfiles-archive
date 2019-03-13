@@ -1,0 +1,61 @@
+snippet main "Template for main-funcion" b
+int main(int argc, char *argv[]) {
+	$0
+	return 0;
+}
+endsnippet
+
+snippet clines "Template for count lines in file" b
+int count_lines(FILE *fp) {
+	int lines = 0;
+	char ch;
+	while(!feof(fp)) {
+		ch = fgetc(fp);
+		if (ch == '\n')
+			lines++;
+	}
+	rewind(fp);
+	return lines;
+}
+endsnippet
+
+snippet cfread "Read file line by line" b
+ssize_t read = 0;
+char *line = NULL;
+size_t len;
+
+while ((read = getline(&line, &len, fp)) != -1) {
+	$0
+}
+endsnippet
+
+snippet fun "Function template" b
+void ${1:fname}($2) {
+	$0
+}
+endsnippet
+
+snippet cgetch "Getch for linux and osx." b
+int getch(void) {
+	int ch;
+	struct termios oldt, newt;
+
+	tcgetattr(STDIN_FILENO, &oldt);
+	newt = oldt;
+	newt.c_lflag &= ~(ICANON | ECHO);
+	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+	ch = getchar();
+	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+
+	return ch;
+}
+endsnippet
+
+snippet ifndef "Header protector" b
+#ifndef ${1:HEADER_H}
+#define ${1:HEADER_H}
+
+$0
+
+#endif
+endsnippet
