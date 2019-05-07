@@ -91,7 +91,7 @@ set clipboard=unnamed,unnamedplus
 set showcmd
 
 " Wildignore
-set wildignore=.git,.svn,node_modules,dist,build,*.o,*.a,*.pyc,*.class
+set wildignore=.git,.svn,node_modules,dist,build,*.o,*.a,*.pyc,*.class,venv
 
 " Enable syntax highlighting
 syntax enable
