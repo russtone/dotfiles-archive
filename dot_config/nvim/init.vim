@@ -56,7 +56,7 @@ Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'mattn/emmet-vim'
 
 " By language
-Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot', { 'do': './build' }
 Plug 'fatih/vim-go'
 
 call plug#end()
