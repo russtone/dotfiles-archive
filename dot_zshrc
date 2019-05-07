@@ -68,6 +68,7 @@ alias v='nvim'
 alias ce='chezmoi edit'
 alias ca='chezmoi apply'
 alias hex='open -a Synalyze\ It\!\ Pro'
+alias now='date +'%d-%m-%Y_%H:%M''
 
 
 # sed
