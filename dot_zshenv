@@ -2,7 +2,8 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-export GOPATH="$HOME/.go:$HOME/Projects/golang"
+export GOPATH="$HOME/.go:$HOME/Dev/golang"
+export GEM_HOME="$HOME/.gem"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 export LANG='en_US.UTF-8'
@@ -16,6 +17,7 @@ source $HOME/.private
 typeset -U path
 path=(
     ${${(s<:>)GOPATH}/%//bin}
+    $GEM_HOME/bin
     $HOME/Library/Android/sdk/{platform-tools,tools}
     $HOME/.local/{bin,sbin}
     /usr/local/opt/{curl,openssl,gettext}/bin
