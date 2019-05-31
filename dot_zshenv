@@ -2,7 +2,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-export GOPATH="$HOME/.go:$HOME/Dev/golang"
+export GOPATH="$HOME/.go:$HOME/Code/golang"
 export GEM_HOME="$HOME/.gem"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
