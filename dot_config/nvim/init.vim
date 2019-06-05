@@ -65,6 +65,9 @@ call plug#end()
 
 " Options {{{ "
 
+" Block cursor
+set guicursor=
+
 " File encodings
 set fileencodings=utf-8,cp1251
 
