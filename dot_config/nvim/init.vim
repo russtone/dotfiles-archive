@@ -796,6 +796,7 @@ let g:neomake_go_gometalinter_args = ['--disable-all']
 
 " Python {{{ "
 
+let g:neomake_python_python_exe = 'python3'
 let g:neomake_python_enabled_makers = ['python', 'pyflakes', 'pycodestyle']
 
 " }}} Python "
