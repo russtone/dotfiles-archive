@@ -56,7 +56,7 @@ Plug 'zchee/deoplete-go', { 'do': 'make' }
 Plug 'mattn/emmet-vim'
 
 " By language
-Plug 'sheerun/vim-polyglot', { 'do': './build' }
+Plug 'sheerun/vim-polyglot', { 'do': 'git reset --hard && ./build' }
 Plug 'fatih/vim-go'
 
 call plug#end()
@@ -64,6 +64,10 @@ call plug#end()
 " }}} Plugins "
 
 " Options {{{ "
+
+" Disable modlines (for security reasons)
+set nomodeline
+set modelines=0
 
 " Block cursor
 set guicursor=
@@ -165,6 +169,9 @@ filetype indent on
 
 " Enable folding
 set foldenable
+
+" Set fold method
+set foldmethod=marker
 
 " Show only menu on completion
 " set completeopt=menu
@@ -1028,5 +1035,3 @@ function! SetGolangOptions()
 endfunction
 
 " }}} Language: Go "
-
-" vim: fdm=marker
