@@ -7,3 +7,15 @@ function ${1:Component}() {
   );
 }
 endsnippet
+
+snippet init
+async function init() {
+  $0;
+}
+
+document.addEventListener('DOMContentLoaded', init);
+endsnippet
+
+snippet rnd
+[...Array(${0:10})].map(_=>(Math.random()*36|0).toString(36)).join('')
+endsnippet
