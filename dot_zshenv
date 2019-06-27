@@ -11,7 +11,9 @@ export LC_ALL=$LANG
 export PAGER='less'
 
 # Private
-source $HOME/.private
+if [ -f $HOME/.private ]; then
+    source $HOME/.private
+fi
 
 # Path
 typeset -U path
