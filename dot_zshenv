@@ -21,7 +21,7 @@ path=(
     ${${(s<:>)GOPATH}/%//bin}
     $GEM_HOME/bin
     $HOME/Library/Android/sdk/{platform-tools,tools}
-    $HOME/.local/{bin,sbin}
+    $HOME/.local/bin
     /usr/local/opt/{curl,openssl,gettext}/bin
     /usr/local/{bin,sbin}
     $path
