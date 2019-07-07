@@ -53,7 +53,6 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
-Plug 'mattn/emmet-vim'
 
 " By language
 Plug 'sheerun/vim-polyglot', { 'do': 'git reset --hard && ./build' }
@@ -949,12 +948,6 @@ nnoremap gh :SidewaysLeft<CR>
 nnoremap gl :SidewaysRight<CR>
 
 " }}} Plugin: Sideways "
-
-" Plugin: Emmet {{{ "
-
-let g:user_emmet_leader_key=','
-
-" }}} Plugin: Emmet "
 
 " Ranger {{{ "
 
