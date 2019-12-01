@@ -18,6 +18,7 @@ fi
 # Path
 typeset -U path
 path=(
+    $HOME/.yandex-cloud/bin
     ${${(s<:>)GOPATH}/%//bin}
     $GEM_HOME/bin
     $HOME/Library/Android/sdk/{platform-tools,tools}
