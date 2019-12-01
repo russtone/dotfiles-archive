@@ -61,7 +61,6 @@ alias ls="$ls_cmd --color=auto --group-directories-first"
 
 # Aliases {{{ #
 
-alias la='ll -A'  # Lists human readable sizes, hidden files
 alias p='python3'
 alias pp='ptpython'
 alias v='nvim'
@@ -80,6 +79,10 @@ alias urlencode="python3 -c 'import sys, urllib as ul; [sys.stdout.write(ul.quot
 # }}} Aliases #
 
 # Completions {{{ #
+
+setopt AUTO_MENU
+setopt COMPLETE_IN_WORD
+setopt ALWAYS_TO_END
 
 # Case insensetive completion
 zstyle ':completion:*' matcher-list \
@@ -140,11 +143,37 @@ fi
 
 # Tools completions {{{ #
 
+compfiles=(
+    /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+    /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+)
+
 # gcloud
-if [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc ]; then
-    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+for f in "${compfiles[@]}"; do
+    if [ -f $f ]; then
+        source $f
+    fi
+done
+
+# kubectl
+if (( $+commands[kubectl] )); then
+    source <(kubectl completion zsh)
 fi
 
+# openshift
+if (( $+commands[oc] )); then
+    source <(oc completion zsh)
+fi
+
+
 # }}} Tools completions #
+
+# brewenv {{{ #
+
+if command -v brewenv >/dev/null 2>&1; then
+  eval "$(brewenv init -)"
+fi
+
+# }}} brewenv #
 
 # vim: fdm=marker ft=zsh
