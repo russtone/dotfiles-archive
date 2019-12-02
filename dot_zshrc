@@ -4,14 +4,14 @@ export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
 # completions
-zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-completions", defer:0
+
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-history-substring-search", defer:3
+zplug "zsh-users/zsh-autosuggestions", defer:3
 
 zplug "plugins/docker-compose", from:oh-my-zsh
 zplug "plugins/docker", from:oh-my-zsh
-
-zplug "zsh-users/zsh-history-substring-search", defer:3
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-autosuggestions"
 
 zplug "morhetz/gruvbox", use:"gruvbox_256palette.sh"
 zplug "russtone/prompt-russtone", as:theme, use:theme.zsh
@@ -19,6 +19,33 @@ zplug "russtone/prompt-russtone", as:theme, use:theme.zsh
 zplug load
 
 # }}} Plugins #
+
+# Completions {{{ #
+
+zmodload zsh/complist
+
+setopt AUTO_MENU
+setopt COMPLETE_IN_WORD
+setopt ALWAYS_TO_END
+
+# Case insensetive completion
+zstyle ':completion:*' matcher-list \
+  'm:{[:lower:]}={[:upper:]}'\
+  'm:{[:upper:]}={[:lower:]}'
+
+# Use cache
+zstyle ':completion::complete:*' use-cache on
+
+# Use menu if more than one result
+zstyle ':completion:*:*:*:*:*' menu select
+
+# Format of group name
+zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+
+# Colors in completion menu
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+# }}} Completions #
 
 # Key bindings {{{ #
 
@@ -35,6 +62,12 @@ bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 
 bindkey '^D' delete-char-or-list
+
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
 
 # }}} Key bindings #
 
@@ -66,42 +99,14 @@ alias pp='ptpython'
 alias v='nvim'
 alias hex='open -a Synalyze\ It\!\ Pro'
 alias now='date +'%d-%m-%Y_%H:%M''
-
+alias w='watch -n1'
 
 # sed
 if (( $+commands[gsed] )); then
     alias sed=gsed
 fi
 
-# urlencode
-alias urlencode="python3 -c 'import sys, urllib as ul; [sys.stdout.write(ul.quote_plus(l)) for l in sys.stdin]'"
-
 # }}} Aliases #
-
-# Completions {{{ #
-
-setopt AUTO_MENU
-setopt COMPLETE_IN_WORD
-setopt ALWAYS_TO_END
-
-# Case insensetive completion
-zstyle ':completion:*' matcher-list \
-  'm:{[:lower:]}={[:upper:]}'\
-  'm:{[:upper:]}={[:lower:]}'
-
-# Use cache
-zstyle ':completion::complete:*' use-cache on
-
-# Use menu if more than one result
-zstyle ':completion:*:*:*:*:*' menu select
-
-# Format of group name
-zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
-
-# Colors in completion menu
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-# }}} Completions #
 
 # History {{{ #
 
@@ -144,27 +149,25 @@ fi
 # Tools completions {{{ #
 
 compfiles=(
-    /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+    # gcloud
     /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 )
 
-# gcloud
 for f in "${compfiles[@]}"; do
     if [ -f $f ]; then
         source $f
     fi
 done
 
-# kubectl
-if (( $+commands[kubectl] )); then
-    source <(kubectl completion zsh)
-fi
-
-# openshift
+# openshift (must be sourced before kubectl)
 if (( $+commands[oc] )); then
     source <(oc completion zsh)
 fi
 
+# kubectl
+if (( $+commands[kubectl] )); then
+    source <(kubectl completion zsh)
+fi
 
 # }}} Tools completions #
 
