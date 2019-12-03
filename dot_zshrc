@@ -79,6 +79,14 @@ bindkey '^r' edit-command-line
 
 # }}} Key bindings #
 
+# Misc {{{ #
+
+# URL magic quite
+autoload -Uz url-quote-magic
+zle -N self-insert url-quote-magic
+
+# }}} #
+
 # Cursor {{{ #
 
 # Change cursor shape for different vi modes.
