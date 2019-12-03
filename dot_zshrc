@@ -79,16 +79,6 @@ bindkey '^r' edit-command-line
 
 # }}} Key bindings #
 
-# Misc {{{ #
-
-# URL magic quite
-# https://github.com/zsh-users/zsh-syntax-highlighting/issues/46
-autoload -U url-quote-magic
-function _url-quote-magic() { url-quote-magic; _zsh_highlight-zle-buffer }
-zle -N self-insert _url-quote-magic
-
-# }}} #
-
 # Cursor {{{ #
 
 # Change cursor shape for different vi modes.
