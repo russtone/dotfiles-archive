@@ -69,7 +69,7 @@ set nomodeline
 set modelines=0
 
 " Block cursor
-set guicursor=
+" set guicursor=
 
 " File encodings
 set fileencodings=utf-8,cp1251
