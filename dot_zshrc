@@ -75,7 +75,7 @@ bindkey -v '^?' backward-delete-char
 # Edit current command in nvim with Ctrl-R
 autoload edit-command-line
 zle -N edit-command-line
-bindkey '^r' edit-command-line
+bindkey '^g' edit-command-line
 
 # }}} Key bindings #
 
