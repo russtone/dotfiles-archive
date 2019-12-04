@@ -1,0 +1,42 @@
+# Options {{{ #
+
+# Show only one pane
+set nopreview
+set ratios 1
+
+set color256
+
+# }}} #
+
+# Commands {{{ #
+
+cmd touch %touch $1
+cmd mkdir %mkdir $1
+
+# }}} #
+
+# Keybindings {{{ #
+
+map , push :touch<space>
+map . push :mkdir<space>
+
+# Remap copy/paste/cut to match vim
+map y
+map p
+map d
+map yy :copy
+map pp :paste
+map dd :cut
+
+# Delete
+map dD :delete
+
+# Edit
+map <enter> $$EDITOR $f
+
+# Rename
+map a :rename
+
+# }}} #
+
+# vim: fdm=fold ft=conf
