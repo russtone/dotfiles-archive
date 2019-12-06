@@ -950,9 +950,9 @@ nnoremap gl :SidewaysRight<CR>
 
 " }}} Plugin: Sideways "
 
-" Ranger {{{ "
+" LF {{{ "
 
-let g:ranger_path = 'ranger'
+let g:lf_path = 'lf'
 
 function! OpenRanger(path)
     let l:path = expand(a:path)
@@ -989,9 +989,9 @@ function! OpenRanger(path)
     set nohidden
     enew
 
-    let l:command = g:ranger_path .
-    \ ' --choosefiles=' . shellescape(l:tmpfile) .
-    \ (isdirectory(l:path) ? shellescape(l:path) : ' --selectfile=' . shellescape(l:path))
+    let l:command = g:lf_path .
+    \ ' -selection-path ' . shellescape(l:tmpfile) .
+    \ ' ' . shellescape(l:path)
 
     call termopen(l:command, l:callback)
     startinsert
