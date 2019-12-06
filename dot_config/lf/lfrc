@@ -20,19 +20,11 @@ cmd mkdir %mkdir $1
 map , push :touch<space>
 map . push :mkdir<space>
 
-# Remap copy/paste/cut to match vim
-map y
-map p
-map d
-map yy :copy
-map pp :paste
-map dd :cut
-
 # Delete
 map dD :delete
 
-# Edit
-map <enter> $$EDITOR $f
+# Open
+map <enter> open
 
 # Rename
 map a :rename
