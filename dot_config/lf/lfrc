@@ -21,7 +21,7 @@ map , push :touch<space>
 map . push :mkdir<space>
 
 # Delete
-map dD :delete
+map D :delete
 
 # Open
 map <enter> open
