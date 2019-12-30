@@ -54,7 +54,7 @@ Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 
 " By language
-Plug 'sheerun/vim-polyglot', { 'do': 'git reset --hard && ./build' }
+Plug 'sheerun/vim-polyglot', { 'do': 'git reset --hard && git clean -f && ./build' }
 Plug 'fatih/vim-go'
 
 call plug#end()
