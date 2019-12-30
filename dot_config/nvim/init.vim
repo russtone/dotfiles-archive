@@ -14,7 +14,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-projectionist'
 
 " Navigation
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-rsi'
 Plug 'easymotion/vim-easymotion'
 
