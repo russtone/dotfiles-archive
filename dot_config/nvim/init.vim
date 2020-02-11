@@ -53,9 +53,23 @@ Plug 'zchee/deoplete-jedi'
 Plug 'zchee/deoplete-clang'
 Plug 'zchee/deoplete-go', { 'do': 'make' }
 
-" By language
-Plug 'sheerun/vim-polyglot', { 'do': 'git reset --hard && git clean -f && ./build' }
-Plug 'fatih/vim-go'
+" Languages
+
+" Golang
+Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+
+" Python
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+
+" JS
+Plug 'maxmellon/vim-jsx-pretty'
+
+" Terraform
+Plug 'hashivim/vim-terraform'
+Plug 'juliosueiras/vim-terraform-completion'
+
+" Ansible
+Plug 'pearofducks/ansible-vim'
 
 call plug#end()
 
