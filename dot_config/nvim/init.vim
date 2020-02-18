@@ -11,15 +11,10 @@ call plug#begin('$XDG_DATA_HOME/nvim/site/plugged')
 
 " Interface
 Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-projectionist'
 
 " Navigation
 Plug 'tpope/vim-rsi'
 Plug 'easymotion/vim-easymotion'
-
-" Search & replace
-Plug 'haya14busa/incsearch.vim'
-Plug 'osyo-manga/vim-over'
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -31,7 +26,6 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-easy-align'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'AndrewRadev/sideways.vim'
-Plug 'jiangmiao/auto-pairs'
 Plug 'AndrewRadev/splitjoin.vim'
 
 " Text objects
@@ -44,25 +38,19 @@ Plug 'glts/vim-textobj-comment'
 " Colorscheme
 Plug 'morhetz/gruvbox'
 
-" Linting
-Plug 'benekastah/neomake'
-
-" Completion
-Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-jedi'
-Plug 'zchee/deoplete-clang'
-Plug 'zchee/deoplete-go', { 'do': 'make' }
+" Completion & Linting
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Languages
 
 " Golang
 Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 
-" Python
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-
 " JS
 Plug 'maxmellon/vim-jsx-pretty'
+
+" Typescript
+Plug 'leafgarland/typescript-vim'
 
 " Terraform
 Plug 'hashivim/vim-terraform'
@@ -70,6 +58,9 @@ Plug 'juliosueiras/vim-terraform-completion'
 
 " Ansible
 Plug 'pearofducks/ansible-vim'
+
+" Nginx
+Plug 'chr4/nginx.vim'
 
 call plug#end()
 
@@ -661,7 +652,10 @@ augroup augroup_ident
     autocmd Filetype pug setlocal ts=2 sts=2 sw=2 expandtab
     autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
     autocmd Filetype javascript.jsx setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd Filetype typescript setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd Filetype typescript.tsx setlocal ts=2 sts=2 sw=2 expandtab
     autocmd Filetype sh setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd Filetype yaml setlocal ts=2 sts=2 sw=2 expandtab
 augroup END
 
 " }}} Indent "
@@ -677,6 +671,8 @@ augroup augroup_filetype
     autocmd BufNewFile,BufRead *.conf set syntax=nginx
     autocmd BufNewFile,BufRead *.sage set syntax=python
     autocmd BufNewFile,BufRead *.css set syntax=less
+    autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+    autocmd BufNewFile,BufRead *.jsx set filetype=typescript.jsx
 augroup END
 
 " }}} Filetypes "
@@ -749,83 +745,6 @@ augroup END
 
 " }}} Plugin: FZF "
 
-" Plugin: Neomake {{{ "
-
-" let g:neomake_verbose = 3
-" let g:neomake_logfile = '/Users/russtone/neomake.log'
-
-let g:neomake_open_list = 0
-
-" Signs
-let g:neomake_error_sign = {
-\     'text':   '✘',
-\     'texthl': 'NeomakeErrorSign',
-\ }
-
-let g:neomake_warning_sign = {
-\     'text':   '❢',
-\     'texthl': 'NeomakeWarningSign',
-\ }
-
-" Signs colors
-exec 'hi NeomakeErrorSign' .
-\   ' guibg=' . s:colours.gui.dark1 .
-\   ' guifg=' . s:colours.gui.neutral_red .
-\   ' gui=bold'
-
-exec 'hi NeomakeWarningSign' .
-\   ' guibg=' . s:colours.gui.dark1 .
-\   ' guifg=' . s:colours.gui.neutral_yellow .
-\   ' gui=bold'
-
-" Check all files on save
-augroup augroup_neomake
-    autocmd!
-    autocmd BufWritePost * Neomake
-augroup END
-
-" Vim {{{2 "
-
-let g:neomake_vim_vint_maker = {
-\     'args': [
-\         '--style-problem',
-\         '--enable-neovim',
-\         '-f', '{file_path}:{line_number}:{column_number}: {severity}: {description}'
-\     ],
-\     'errorformat':
-\     '%W%f:%l:%c: warning: %m,' .
-\     '%W%f:%l:%c: style_problem: %m,' .
-\     '%E%f:%l:%c: error: %m,'
-\ }
-
-if executable('vint')
-    let g:neomake_vim_enabled_makers = ['vint']
-endif
-
-" 2}}} Vim "
-
-" HTML {{{ "
-
-let g:neomake_html_enabled_makers = []
-
-" }}} HTML "
-
-" Go {{{2 "
-
-" Disable gometalinter
-let g:neomake_go_gometalinter_args = ['--disable-all']
-
-" 2}}} Go "
-
-" Python {{{ "
-
-let g:neomake_python_python_exe = 'python3'
-let g:neomake_python_enabled_makers = ['python', 'pyflakes', 'pycodestyle']
-
-" }}} Python "
-
-" }}} Plugin: Neomake "
-
 " Plugin: EasyAlign {{{ "
 
 vnoremap gaa :EasyAlign<Space>
@@ -869,92 +788,21 @@ map <Leader>k <Plug>(easymotion-k)
 
 " }}} Plugin: EasyMotion "
 
-" Plugin: Projectionist {{{ "
+" Plugin: coc.vim {{{ "
 
-let g:projectionist_heuristics = {
-\ 'CMakeLists.txt': {
-\     'src/*.c': {
-\         'type': 'source',
-\         'alternate': 'include/{}.h',
-\     },
-\     'include/*.h': {
-\         'type': 'header',
-\         'alternate': 'src/{}.c',
-\     },
-\     '*': {
-\         'make': 'make -C build',
-\     },
-\ }}
+exec 'hi CocErrorSign guifg=' . s:colours.gui.neutral_red
 
-augroup augroup_projectionist
-    autocmd!
-    autocmd User ProjectionistActivate call NeomakeProjectLint()
-augroup END
+" Notify coc.nvim that `<enter>` has been pressed.
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-function! NeomakeProjectLint() abort
-    if len(projectionist#query('make'))
-        augroup augroup_neomake
-            autocmd!
-            autocmd BufWritePost * Neomake!
-        augroup END
-    endif
-endfunction
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
-" }}} Plugin: Projectionist "
-
-" Plugin: Deoplete {{{ "
-
-" inoremap <silent><expr> <Tab>
-" \ pumvisible() ? "\<C-n>" : "\<Tab>"
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#max_menu_width = 10
-
-" Clang {{{2 "
-
-let g:deoplete#sources#clang#libclang_path = '/usr/local/opt/llvm/lib/libclang.dylib'
-let g:deoplete#sources#clang#clang_header = '/usr/local/opt/llvm/include'
-
-let g:deoplete#sources#clang#flags = [
-\ '-I', './include',
-\ '-I', './.deps/usr/include',
-\ '-I', '/usr/local/include',
-\ '-I', '/usr/include',
-\ '-I', '/usr/local/opt/openssl/include'
-\ ]
-
- " 2}}} Clang "
-
-" }}} Plugin: Deoplete "
-
-" Plugin: Incsearch {{{ "
-
-map / <Plug>(incsearch-forward)
-map ? <Plug>(incsearch-backward)
-
-let g:incsearch#auto_nohlsearch = 1
-
-map n <Plug>(incsearch-nohl-n)zv
-map N <Plug>(incsearch-nohl-N)zv
-
-let g:incsearch_cli_key_mappings = {
-\     "\<Tab>": {
-\         'key': '<Over>(buffer-complete)',
-\         'noremap': 1
-\     },
-\     "\<C-n>": '<Over>(buffer-complete)',
-\     "\<C-p>": '<Over>(buffer-complete-prev)',
-\ }
-
-" }}} Plugin: Incsearch "
-
-" Plugin: Over {{{ "
-
-vnoremap <silent> gR :OverCommandLine<CR>s/\%V
-vnoremap <silent> gr :OverCommandLine<CR>s/
-nnoremap <silent> gr :OverCommandLine<CR>s/
-
-" }}} Plugin: Over "
+" }}} Plugin: coc.vim "
 
 " Plugin: Sideways {{{ "
 
@@ -967,7 +815,7 @@ nnoremap gl :SidewaysRight<CR>
 
 let g:lf_path = 'lf'
 
-function! OpenRanger(path)
+function! OpenLF(path)
     let l:path = expand(a:path)
     let l:tmpfile = tempname()
     let l:curfile = expand('%:p')
@@ -1011,7 +859,7 @@ function! OpenRanger(path)
 endfunction
 
 " Start ranger in current buffer directory (d - directory)
-nnoremap <Leader>d :call OpenRanger('%:p')<CR>
+nnoremap <Leader>d :call OpenLF('%:p')<CR>
 
 augroup augroup_terminal
     autocmd!

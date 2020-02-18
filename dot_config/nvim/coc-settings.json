@@ -1,0 +1,30 @@
+{
+    // Formatting
+    "coc.preferences.formatOnSaveFiletypes": [
+        "python",
+        "json",
+        "golang",
+        "typescript",
+        "typescriptreact",
+        "javascript",
+        "javascriptreact",
+        "css"
+    ],
+    "coc.preferences.formatOnType": true,
+
+    // Linting
+    "diagnostic.warningSign": "❢",
+    "diagnostic.errorSign": "✘",
+
+    "yaml.schemas": {
+    },
+
+    // Python
+    "python.formatting.provider": "black",
+
+    // Golang
+    "go.enable": true,
+    "go.goplsOptions": {
+        "staticcheck": true
+    }
+}
