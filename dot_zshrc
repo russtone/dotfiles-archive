@@ -137,6 +137,13 @@ alias v='nvim'
 alias hex='open -a Synalyze\ It\!\ Pro'
 alias now='date +'%d-%m-%Y_%H:%M''
 alias w='watch -n1'
+alias ce='chezmoi edit'
+alias ca='chezmoi apply'
+alias cev='chezmoi edit ~/.config/nvim/init.vim'
+alias cec='chezmoi edit ~/.config/nvim/coc-settings.json'
+alias cezc='chezmoi edit ~/.zshrc'
+alias ceze='chezmoi edit ~/.zshenv'
+
 
 # sed
 if (( $+commands[gsed] )); then
