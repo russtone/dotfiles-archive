@@ -1,0 +1,22 @@
+snippet alfred-workflow
+#!/usr/bin/python
+# encoding: utf-8
+
+import sys
+
+from workflow import Workflow3
+
+
+log = None
+
+
+def main(wf):
+	$0
+    wf.send_feedback()
+
+
+if __name__ == '__main__':
+    wf = Workflow3()
+    log = wf.logger
+    sys.exit(wf.run(main))
+endsnippet
