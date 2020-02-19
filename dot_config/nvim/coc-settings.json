@@ -26,5 +26,7 @@
     "go.enable": true,
     "go.goplsOptions": {
         "staticcheck": true
-    }
+    },
+
+    // Snippets
 }
