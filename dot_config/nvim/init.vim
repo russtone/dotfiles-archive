@@ -16,9 +16,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-rsi'
 Plug 'easymotion/vim-easymotion'
 
-" Snippets
-Plug 'SirVer/ultisnips'
-
 " Editor
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
@@ -54,7 +51,6 @@ Plug 'leafgarland/typescript-vim'
 
 " Terraform
 Plug 'hashivim/vim-terraform'
-Plug 'juliosueiras/vim-terraform-completion'
 
 " Ansible
 Plug 'pearofducks/ansible-vim'
@@ -677,16 +673,6 @@ augroup END
 
 " }}} Filetypes "
 
-" Plugin: UltiSnips {{{ "
-
-let g:UltiSnipsSnippetDirectories = [$XDG_CONFIG_HOME . '/nvim/UltiSnips']
-
-let g:UltiSnipsExpandTrigger = '<Tab>'
-let g:UltiSnipsJumpForwardTrigger = '<Tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-
-" }}} Plugin: UltiSnips "
-
 " Plugin: FZF {{{ "
 
 let &runtimepath.=',' . substitute(system('brew --prefix'), "\n", '', '') . '/opt/fzf'
@@ -801,6 +787,20 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 
 " }}} Plugin: coc.vim "
 
