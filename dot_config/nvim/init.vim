@@ -41,10 +41,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Languages
 
 " Golang
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+Plug 'fatih/vim-go'
 
 " JS
 Plug 'maxmellon/vim-jsx-pretty'
+
+" JSON
+Plug 'neoclide/jsonc.vim'
 
 " Typescript
 Plug 'leafgarland/typescript-vim'
@@ -282,6 +285,9 @@ endif
 " Quickfix
 nnoremap <Leader>n :cnext<CR>
 nnoremap <Leader>p :cprev<CR>
+
+" Clear last search highlighting
+map <Leader><Leader> :noh<cr>
 
 " }}} Key mappings "
 
@@ -669,6 +675,7 @@ augroup augroup_filetype
     autocmd BufNewFile,BufRead *.css set syntax=less
     autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
     autocmd BufNewFile,BufRead *.jsx set filetype=typescript.jsx
+    autocmd BufNewFile,BufRead *.json set filetype=jsonc
 augroup END
 
 " }}} Filetypes "
@@ -802,6 +809,24 @@ endfunction
 
 let g:coc_snippet_next = '<tab>'
 
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <localleader>a <Plug>(coc-codeaction-selected)
+nmap <localleader>a <Plug>(coc-codeaction-selected)
+
+" Introduce function text object
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Golang
+augroup augroup_golang
+    autocmd!
+    autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+augroup END
+
 " }}} Plugin: coc.vim "
 
 " Plugin: Sideways {{{ "
@@ -867,26 +892,3 @@ augroup augroup_terminal
 augroup END
 
 " }}} Ranger "
-
-" Language: Go {{{ "
-
-" vim-go
-let g:go_term_enabled = 1
-let g:go_term_mode = 'split'
-let g:go_fmt_command = 'goimports'
-
-augroup augroup_golang
-    autocmd!
-    autocmd Filetype go call SetGolangOptions()
-augroup END
-
-function! SetGolangOptions()
-    nnoremap <Localleader>b :GoBuild<CR>
-    nnoremap <Localleader>r :GoRename<CR>
-    nnoremap <Localleader>i :GoImports<CR>
-    nnoremap <Localleader>t :GoTest<CR>
-    nnoremap <Localleader>a :GoAlternate<CR>
-    nnoremap <Localleader>B :GoTestCompile<CR>
-endfunction
-
-" }}} Language: Go "
