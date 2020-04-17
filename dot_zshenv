@@ -18,6 +18,7 @@ fi
 # Path
 typeset -U path
 path=(
+    $HOME/.krew/bin
     $HOME/.yandex-cloud/bin
     ${${(s<:>)GOPATH}/%//bin}
     $GEM_HOME/bin
