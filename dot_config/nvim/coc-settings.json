@@ -8,7 +8,8 @@
         "typescriptreact",
         "javascript",
         "javascriptreact",
-        "css"
+        "css",
+        "html"
     ],
     "coc.preferences.formatOnType": true,
 
@@ -20,13 +21,15 @@
     },
 
     // Python
+    "python.pythonPath": "/usr/local/bin/python3",
     "python.formatting.provider": "black",
+    "python.jediEnabled": false,
 
     // Golang
-    "go.enable": true,
     "go.goplsOptions": {
         "staticcheck": true
     },
 
     // Snippets
+    "snippets.loadFromExtensions": false,
 }
