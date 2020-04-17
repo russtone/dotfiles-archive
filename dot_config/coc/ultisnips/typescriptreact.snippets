@@ -1,11 +1,15 @@
 snippet rfc
-import React from 'react';
+import React from "react";
 
-const ${1:Component} = () => {
+const ${1:`!p snip.rv = snip.basename`} = () => {
 	return (
 		<>$0</>
 	);
 }
 
 export default $1;
+endsnippet
+
+snippet stl
+import styles from './`!p snip.rv = snip.basename`.module.css';
 endsnippet

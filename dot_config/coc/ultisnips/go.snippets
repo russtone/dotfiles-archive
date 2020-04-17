@@ -3,3 +3,12 @@ if err != nil {
 	return ${1:err}
 }
 endsnippet
+
+snippet tf
+func Test$1_$2(t *testing.T) {
+	setup(t)
+	defer teardown(t)
+
+	$0
+}
+endsnippet
