@@ -33,6 +33,7 @@ Plug 'kana/vim-textobj-indent'
 Plug 'glts/vim-textobj-comment'
 
 " Colorscheme
+Plug 'arzg/vim-colors-xcode'
 Plug 'morhetz/gruvbox'
 
 " Completion & Linting
@@ -110,8 +111,9 @@ set termguicolors
 
 set background=dark
 try
-    let g:gruvbox_invert_selection = 0
-    colorscheme gruvbox
+    " let g:gruvbox_invert_selection = 0
+    " colorscheme gruvbox
+    colorscheme xcodedark
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert
 endtry
@@ -194,64 +196,89 @@ set completeopt=noinsert,menuone,noselect
 
 " Colours {{{ "
 
+" Gruvbox
+" let s:colours = {
+" \ 'gui':  {
+" \         'dark0_hard':     '#1d2021',
+" \         'dark0':          '#282828',
+" \         'dark0_soft':     '#32302f',
+" \         'dark1':          '#3c3836',
+" \         'dark2':          '#504945',
+" \         'dark3':          '#665c54',
+" \         'dark4':          '#7c6f64',
+" \         'gray_245':       '#928374',
+" \         'gray_244':       '#928374',
+" \         'light0_hard':    '#f9f5d7',
+" \         'light0':         '#fbf1c7',
+" \         'light0_soft':    '#f2e5bc',
+" \         'light1':         '#ebdbb2',
+" \         'light2':         '#d5c4a1',
+" \         'light3':         '#bdae93',
+" \         'light4':         '#a89984',
+" \         'bright_red':     '#fb4934',
+" \         'bright_green':   '#b8bb26',
+" \         'bright_yellow':  '#fabd2f',
+" \         'bright_blue':    '#83a598',
+" \         'bright_purple':  '#d3869b',
+" \         'bright_aqua':    '#8ec07c',
+" \         'bright_orange':  '#fe8019',
+" \         'red':    '#cc241d',
+" \         'green':  '#98971a',
+" \         'yellow': '#d79921',
+" \         'blue':   '#458588',
+" \         'purple': '#b16286',
+" \         'aqua':   '#689d6a',
+" \         'orange': '#d65d0e',
+" \         'faded_red':      '#9d0006',
+" \         'faded_green':    '#79740e',
+" \         'faded_yellow':   '#b57614',
+" \         'faded_blue':     '#076678',
+" \         'faded_purple':   '#8f3f71',
+" \         'faded_aqua':     '#427b58',
+" \         'faded_orange':   '#af3a03',
+" \     }
+" \ }
+
+" Xcode
 let s:colours = {
 \ 'gui':  {
-\         'dark0_hard':     '#1d2021',
-\         'dark0':          '#282828',
-\         'dark0_soft':     '#32302f',
-\         'dark1':          '#3c3836',
-\         'dark2':          '#504945',
-\         'dark3':          '#665c54',
-\         'dark4':          '#7c6f64',
-\         'gray_245':       '#928374',
-\         'gray_244':       '#928374',
-\         'light0_hard':    '#f9f5d7',
-\         'light0':         '#fbf1c7',
-\         'light0_soft':    '#f2e5bc',
-\         'light1':         '#ebdbb2',
-\         'light2':         '#d5c4a1',
-\         'light3':         '#bdae93',
-\         'light4':         '#a89984',
-\         'bright_red':     '#fb4934',
-\         'bright_green':   '#b8bb26',
-\         'bright_yellow':  '#fabd2f',
-\         'bright_blue':    '#83a598',
-\         'bright_purple':  '#d3869b',
-\         'bright_aqua':    '#8ec07c',
-\         'bright_orange':  '#fe8019',
-\         'neutral_red':    '#cc241d',
-\         'neutral_green':  '#98971a',
-\         'neutral_yellow': '#d79921',
-\         'neutral_blue':   '#458588',
-\         'neutral_purple': '#b16286',
-\         'neutral_aqua':   '#689d6a',
-\         'neutral_orange': '#d65d0e',
-\         'faded_red':      '#9d0006',
-\         'faded_green':    '#79740e',
-\         'faded_yellow':   '#b57614',
-\         'faded_blue':     '#076678',
-\         'faded_purple':   '#8f3f71',
-\         'faded_aqua':     '#427b58',
-\         'faded_orange':   '#af3a03',
+\        'black':          '#393b44',
+\        'red':            '#ff8170',
+\        'green':          '#78c2b3',
+\        'yellow':         '#d9c97c',
+\        'blue':           '#4eb0cc',
+\        'magenta':        '#ff7ab2',
+\        'cyan':           '#b281eb',
+\        'white':          '#dfdfe0',
+\        'foreground':     '#dfdfe0',
+\        'background':     '#292a30',
+\        'bright_black':   '#7f8c98',
+\        'bright_red':     '#ff8170',
+\        'bright_green':   '#acf2e4',
+\        'bright_yellow':  '#ffa14f',
+\        'bright_blue':    '#6bdfff',
+\        'bright_magenta': '#ff7ab2',
+\        'bright_cyan':    '#dabaff',
+\        'bright_white':   '#dfdfe0',
 \     }
 \ }
 
-let g:terminal_color_0 = s:colours.gui.dark0
-let g:terminal_color_1 = s:colours.gui.neutral_red
-let g:terminal_color_2 = s:colours.gui.neutral_green
-let g:terminal_color_3 = s:colours.gui.neutral_yellow
-let g:terminal_color_4 = s:colours.gui.neutral_blue
-let g:terminal_color_5 = s:colours.gui.neutral_purple
-let g:terminal_color_6 = s:colours.gui.neutral_aqua
-let g:terminal_color_7 = s:colours.gui.gray_245
-let g:terminal_color_8 = s:colours.gui.gray_244
+let g:terminal_color_0 = s:colours.gui.black
+let g:terminal_color_1 = s:colours.gui.red
+let g:terminal_color_2 = s:colours.gui.green
+let g:terminal_color_3 = s:colours.gui.yellow
+let g:terminal_color_4 = s:colours.gui.blue
+let g:terminal_color_5 = s:colours.gui.magenta
+let g:terminal_color_6 = s:colours.gui.cyan
+let g:terminal_color_7 = s:colours.gui.white
+let g:terminal_color_8 = s:colours.gui.bright_black
 let g:terminal_color_9 = s:colours.gui.bright_red
 let g:terminal_color_10 = s:colours.gui.bright_green
 let g:terminal_color_11 = s:colours.gui.bright_yellow
 let g:terminal_color_12 = s:colours.gui.bright_blue
-let g:terminal_color_13 = s:colours.gui.bright_purple
-let g:terminal_color_14 = s:colours.gui.bright_aqua
-let g:terminal_color_15 = s:colours.gui.light0
+let g:terminal_color_13 = s:colours.gui.bright_magenta
+let g:terminal_color_14 = s:colours.gui.bright_cyan
+let g:terminal_color_15 = s:colours.gui.bright_white
 
 " }}} Colours "
 
@@ -405,13 +432,13 @@ nnoremap <silent> : :<C-\>eRedrawStatus()<CR>
 " Percent & Position {{{
 
 exec 'hi StatusLinePercent'
-\   ' guibg=' . s:colours.gui.gray_244 .
-\   ' guifg=' . s:colours.gui.dark0 .
+\   ' guibg=' . s:colours.gui.black .
+\   ' guifg=' . s:colours.gui.foreground .
 \   ' gui=bold'
 
 exec 'hi StatusLinePosition'
-\   ' guibg=' . s:colours.gui.light3 .
-\   ' guifg=' . s:colours.gui.dark0 .
+\   ' guibg=' . s:colours.gui.bright_black .
+\   ' guifg=' . s:colours.gui.black .
 \   ' gui=bold'
 
 " }}} Percent & Position
@@ -419,43 +446,43 @@ exec 'hi StatusLinePosition'
 " Mode {{{2 "
 
 exec 'hi StatusLineMode_NORMAL'
-\   ' guibg=' . s:colours.gui.neutral_blue .
-\   ' guifg=' . s:colours.gui.dark0 .
+\   ' guibg=' . s:colours.gui.blue .
+\   ' guifg=' . s:colours.gui.black .
 \   ' gui=bold'
 
 exec 'hi StatusLineMode_INSERT'
-\   ' guibg=' . s:colours.gui.neutral_green .
-\   ' guifg=' . s:colours.gui.dark0 .
+\   ' guibg=' . s:colours.gui.green .
+\   ' guifg=' . s:colours.gui.black .
 \   ' gui=bold'
 
 exec 'hi StatusLineMode_VISUAL'
-\   ' guibg=' . s:colours.gui.neutral_orange .
-\   ' guifg=' . s:colours.gui.dark0 .
+\   ' guibg=' . s:colours.gui.yellow .
+\   ' guifg=' . s:colours.gui.black .
 \   ' gui=bold'
 
 exec 'hi StatusLineMode_V_LINE'
-\   ' guibg=' . s:colours.gui.neutral_orange .
-\   ' guifg=' . s:colours.gui.dark0 .
+\   ' guibg=' . s:colours.gui.yellow .
+\   ' guifg=' . s:colours.gui.black .
 \   ' gui=bold'
 
 exec 'hi StatusLineMode_V_BLOCK'
-\   ' guibg=' . s:colours.gui.neutral_orange .
-\   ' guifg=' . s:colours.gui.dark0 .
+\   ' guibg=' . s:colours.gui.yellow .
+\   ' guifg=' . s:colours.gui.black .
 \   ' gui=bold'
 
 exec 'hi StatusLineMode_REPLACE'
-\   ' guibg=' . s:colours.gui.neutral_red .
-\   ' guifg=' . s:colours.gui.dark0 .
+\   ' guibg=' . s:colours.gui.red .
+\   ' guifg=' . s:colours.gui.black .
 \   ' gui=bold'
 
 exec 'hi StatusLineMode_COMMAND'
-\   ' guibg=' . s:colours.gui.neutral_aqua .
-\   ' guifg=' . s:colours.gui.dark0 .
+\   ' guibg=' . s:colours.gui.cyan .
+\   ' guifg=' . s:colours.gui.black .
 \   ' gui=bold'
 
 exec 'hi StatusLineMode_TERMINAL'
-\   ' guibg=' . s:colours.gui.neutral_purple .
-\   ' guifg=' . s:colours.gui.dark0 .
+\   ' guibg=' . s:colours.gui.magenta .
+\   ' guifg=' . s:colours.gui.black .
 \   ' gui=bold'
 
 function! s:mode2name(mode)
@@ -506,24 +533,24 @@ endfunction
 " WindowType {{{2 "
 
 exec 'hi StatusLineWindowType_help'
-\   ' guibg=' . s:colours.gui.neutral_green .
-\   ' guifg=' . s:colours.gui.dark0
+\   ' guibg=' . s:colours.gui.green .
+\   ' guifg=' . s:colours.gui.background
 
 exec 'hi StatusLineWindowType_fzf'
-\   ' guibg=' . s:colours.gui.neutral_purple .
-\   ' guifg=' . s:colours.gui.dark0
+\   ' guibg=' . s:colours.gui.magenta .
+\   ' guifg=' . s:colours.gui.background
 
 exec 'hi StatusLineWindowType_quickfix'
-\   ' guibg=' . s:colours.gui.neutral_yellow .
-\   ' guifg=' . s:colours.gui.dark0
+\   ' guibg=' . s:colours.gui.yellow .
+\   ' guifg=' . s:colours.gui.background
 
 exec 'hi StatusLineWindowType_plugins'
-\   ' guibg=' . s:colours.gui.neutral_aqua .
-\   ' guifg=' . s:colours.gui.dark0
+\   ' guibg=' . s:colours.gui.cyan .
+\   ' guifg=' . s:colours.gui.background
 
 exec 'hi StatusLineWindowType_tagbar'
-\   ' guibg=' . s:colours.gui.neutral_green .
-\   ' guifg=' . s:colours.gui.dark0
+\   ' guibg=' . s:colours.gui.green .
+\   ' guifg=' . s:colours.gui.background
 
 function! s:get_window_type(filename, filetype)
     if a:filetype ==? 'help'
@@ -564,8 +591,8 @@ endfunction
 " File {{{2 "
 
 exec 'hi StatusLineFile'
-\   ' guibg=' . s:colours.gui.dark1 .
-\   ' guifg=' . s:colours.gui.light0
+\   ' guibg=' . s:colours.gui.black .
+\   ' guifg=' . s:colours.gui.foreground
 
 function! StatusLineFile()
     let l:filetype = &filetype
@@ -616,8 +643,8 @@ endfunction
 " Branch {{{2 "
 
 exec 'hi StatusLineBranch'
-\   ' guibg=' . s:colours.gui.neutral_purple .
-\   ' guifg=' . s:colours.gui.dark0
+\   ' guibg=' . s:colours.gui.magenta .
+\   ' guifg=' . s:colours.gui.foreground
 
 function! StatusLineBranch()
 
@@ -783,7 +810,7 @@ map <Leader>k <Plug>(easymotion-k)
 
 " Plugin: coc.vim {{{ "
 
-exec 'hi CocErrorSign guifg=' . s:colours.gui.neutral_red
+exec 'hi CocErrorSign guifg=' . s:colours.gui.red
 
 " Notify coc.nvim that `<enter>` has been pressed.
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
