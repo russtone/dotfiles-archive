@@ -307,6 +307,10 @@ nnoremap <Leader>p :cprev<CR>
 " Clear last search highlighting
 map <Leader><Leader> :noh<cr>
 
+map gs :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 " }}} Key mappings "
 
 " Autocmd: SignColumn {{{ "
@@ -809,6 +813,11 @@ let g:coc_snippet_next = '<tab>'
 " Example: `<leader>aap` for current paragraph
 xmap <localleader>a <Plug>(coc-codeaction-selected)
 nmap <localleader>a <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <localleader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <localleader>qf  <Plug>(coc-fix-current)
 
 " Introduce function text object
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
