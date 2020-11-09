@@ -18,8 +18,8 @@ fi
 # Path
 typeset -U path
 path=(
+    $HOME/.config/composer/vendor/bin
     $HOME/.krew/bin
-    $HOME/.yandex-cloud/bin
     ${${(s<:>)GOPATH}/%//bin}
     $GEM_HOME/bin
     $HOME/Library/Android/sdk/{platform-tools,tools}
@@ -27,6 +27,12 @@ path=(
     /usr/local/opt/{curl,openssl,gettext}/bin
     /usr/local/{bin,sbin}
     $path
+)
+
+# Fpath
+fpath=(
+    $XDG_DATA_HOME/zsh-completions
+    $fpath
 )
 
 if (( $+commands[nvim] )); then
