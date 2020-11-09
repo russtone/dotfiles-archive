@@ -832,6 +832,13 @@ nnoremap gl :SidewaysRight<CR>
 
 " }}} Plugin: Sideways "
 
+" Plugin: Markdown {{{ "
+
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
+
+" }}} Plugin: Markdown "
+
 " LF {{{ "
 
 let g:lf_path = 'lf'
