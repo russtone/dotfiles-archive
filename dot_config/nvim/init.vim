@@ -14,7 +14,6 @@ Plug 'junegunn/fzf.vim'
 
 " Navigation
 Plug 'tpope/vim-rsi'
-Plug 'easymotion/vim-easymotion'
 
 " Editor
 Plug 'tpope/vim-repeat'
@@ -785,28 +784,6 @@ nmap gs" ysiW"
 nmap gs) ysiW)
 
 " }}} Plugin: Surround "
-
-" Plugin: EasyMotion {{{ "
-
-" Disable default mappings
-let g:EasyMotion_do_mapping = 0
-
-" Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
-
-" Press 2 keystrokes and jump
-nmap s <Plug>(easymotion-overwin-f2)
-
-" Smartsign (type `3` and match `3`&`#`)
-let g:EasyMotion_use_smartsign_us = 1
-
-" JK motions: Line motions
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>h <Plug>(easymotion-linebackward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-
-" }}} Plugin: EasyMotion "
 
 " Plugin: coc.vim {{{ "
 
