@@ -1,0 +1,41 @@
+snippet pod "Basic k8s Pod" b
+apiVersion: v1
+kind: Pod
+metadata:
+	name: test
+spec:
+	containers:
+	- name: test
+		image: debian
+		command: ["sleep", "infinity"]
+endsnippet
+
+snippet dep "Basic k8s Deployment" b
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+	name: test
+spec:
+	replicas: 1
+	selector:
+		matchLabels:
+			app: test
+	template:
+		metadata:
+			labels:
+				app: test
+		spec:
+			containers:
+			- name: test
+				image: debian
+				command: ["sleep", "infinity"]
+endsnippet
+
+snippet cm "Basic k8s ConfigMap"
+apiVersion: v1
+kind: ConfigMap
+metadata:
+	name: test
+data:
+	key: value
+endsnippet

@@ -1,35 +1,45 @@
 {
-    // Formatting
-    "coc.preferences.formatOnSaveFiletypes": [
-        "python",
-        "json",
-        "golang",
-        "typescript",
-        "typescriptreact",
-        "javascript",
-        "javascriptreact",
-        "css",
-        "html"
-    ],
-    "coc.preferences.formatOnType": true,
+  // Formatting
+  "coc.preferences.formatOnSaveFiletypes": [
+    "python",
+    "json",
+    "jsonc",
+    "go",
+    "golang",
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact",
+    "css",
+    "html"
+  ],
+  "coc.preferences.formatOnType": true,
 
-    // Linting
-    "diagnostic.warningSign": "❢",
-    "diagnostic.errorSign": "✘",
+  // Linting
+  "diagnostic.warningSign": "❢",
+  "diagnostic.errorSign": "✘",
 
-    "yaml.schemas": {
-    },
+  "yaml.schemas": {},
 
-    // Python
-    "python.pythonPath": "/usr/local/bin/python3",
-    "python.formatting.provider": "black",
-    "python.jediEnabled": false,
+  // "languageserver": {
+  //   "go": {
+  //     "command": "gopls",
+  //     "rootPatterns": ["go.mod"],
+  //     "filetypes": ["go"]
+  //   }
+  // },
 
-    // Golang
-    "go.goplsOptions": {
-        "staticcheck": true
-    },
+  // Python
+  "python.pythonPath": "/usr/local/bin/python3",
+  "python.formatting.provider": "black",
+  "python.jediEnabled": false,
+  "python.linting.mypyEnabled": true,
 
-    // Snippets
-    "snippets.loadFromExtensions": false,
+  // Golang
+  "go.goplsOptions": {
+    "staticcheck": true
+  },
+
+  // Snippets
+  "snippets.loadFromExtensions": false
 }
