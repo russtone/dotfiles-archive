@@ -103,7 +103,8 @@ set background=dark
 try
     " let g:gruvbox_invert_selection = 0
     " colorscheme gruvbox
-    colorscheme xcodedark
+    " colorscheme xcodedark
+    colorscheme xcode
 catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme desert
 endtry
