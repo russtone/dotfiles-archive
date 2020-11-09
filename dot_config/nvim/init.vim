@@ -40,26 +40,17 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Languages
 
-" Golang
-Plug 'fatih/vim-go'
-
-" JS
+Plug 'StanAngeloff/php.vim'
+" Plug 'fatih/vim-go', {'dir': 'syntax'}
 Plug 'maxmellon/vim-jsx-pretty'
-
-" JSON
 Plug 'neoclide/jsonc.vim'
-
-" Typescript
 Plug 'leafgarland/typescript-vim'
-
-" Terraform
 Plug 'hashivim/vim-terraform'
-
-" Ansible
 Plug 'pearofducks/ansible-vim'
-
-" Nginx
 Plug 'chr4/nginx.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'plasticboy/vim-markdown'
+Plug 'udalov/kotlin-vim'
 
 call plug#end()
 
