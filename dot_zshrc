@@ -198,37 +198,3 @@ if (( $+commands[fzf] )); then
 fi
 
 # }}}
-
-# Tools completions {{{ #
-
-# Completions from files
-compfiles=(
-    # gcloud
-    /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
-)
-
-for f in "${compfiles[@]}"; do
-    if [ -f $f ]; then
-        source $f
-    fi
-done
-
-# Completions from commands
-compcmds=(
-    oc
-    kubectl
-)
-
-for c in "${compcmds[@]}"; do
-    if (( $+commands[$c] )); then
-        source <($c completion zsh)
-    fi
-    # Workaround
-    # https://github.com/kubernetes/kubectl/issues/125
-    clear
-done
-
-# }}} Tools completions #
-
-# vim: fdm=marker ft=zsh
-
