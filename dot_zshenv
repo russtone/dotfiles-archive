@@ -3,8 +3,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 export GOPATH="$HOME/.go:$HOME/Code/golang"
-export GEM_HOME="$HOME/.gem"
 export VIRTUAL_ENV_DISABLE_PROMPT=1
+export NVM_DIR="$HOME/.local/share/nvm"
 
 export LANG='en_US.UTF-8'
 export LC_ALL=$LANG
@@ -21,8 +21,11 @@ path=(
     $HOME/.config/composer/vendor/bin
     $HOME/.krew/bin
     ${${(s<:>)GOPATH}/%//bin}
-    $GEM_HOME/bin
-    $HOME/Library/Android/sdk/{platform-tools,tools}
+    $HOME/.rbenv/bin
+    $HOME/Library/Android/sdk/emulator
+    $HOME/Library/Android/sdk/platform-tools
+    $HOME/Library/Android/sdk/tools
+    $HOME/Library/Android/sdk/tools/bin
     $HOME/.local/bin
     /usr/local/opt/{curl,openssl,gettext}/bin
     /usr/local/{bin,sbin}

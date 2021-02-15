@@ -9,9 +9,10 @@
     "typescript",
     "typescriptreact",
     "javascript",
-    "javascriptreact",
+    // "javascriptreact",
     "css",
-    "html"
+    "html",
+    "ruby"
   ],
   "coc.preferences.formatOnType": true,
 

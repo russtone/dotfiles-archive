@@ -32,16 +32,14 @@ Plug 'kana/vim-textobj-indent'
 Plug 'glts/vim-textobj-comment'
 
 " Colorscheme
-Plug 'arzg/vim-colors-xcode'
 Plug 'morhetz/gruvbox'
 
 " Completion & Linting
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Languages
-
 Plug 'StanAngeloff/php.vim'
-" Plug 'fatih/vim-go', {'dir': 'syntax'}
+Plug 'fatih/vim-go'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'neoclide/jsonc.vim'
 Plug 'leafgarland/typescript-vim'
@@ -307,6 +305,7 @@ nnoremap <Leader>p :cprev<CR>
 " Clear last search highlighting
 map <Leader><Leader> :noh<cr>
 
+" Show syntax element
 map gs :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
@@ -698,6 +697,7 @@ augroup augroup_filetype
     autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
     autocmd BufNewFile,BufRead *.jsx set filetype=typescript.jsx
     autocmd BufNewFile,BufRead *.json set filetype=jsonc
+    autocmd BufNewFile,BufRead *.tmpl set filetype=gotexttmpl
 augroup END
 
 " }}} Filetypes "

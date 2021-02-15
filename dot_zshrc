@@ -197,3 +197,7 @@ if (( $+commands[fzf] )); then
 fi
 
 # }}}
+
+# rbenv {{{
+eval "$(rbenv init -)"
+# }}}
